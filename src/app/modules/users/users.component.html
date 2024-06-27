@@ -1,45 +1,72 @@
 <div class="panel">
-    <div class="column panel__column">
-        <div class="row panel__row">
-            <div class="col d-flex position-relative justify-content-start align-items-center container_input_icon">
-                <input type="text" class="cst-button btn btn-light text-center" placeholder="Search">
-                <i class="fa-solid fa-magnifying-glass position-absolute"></i>
-            </div>
-            <div class="col d-flex justify-content-end">
-                <button type="button" class="cst-button btn cst-button-primary" title="Create new" (click)="openmodal()">
-                    <i class="fa-solid fa-plus"></i> Create new
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col table-responsive">
-                <table class="w-100 table">
-                    <tr>
-                        <th>Name</th>
-                        <th>DOB</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Email</th>
-                        <th>Country</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr *ngFor="let user of users">
-                        <td><input type="checkbox" id="name"><label for="name">{{user.name.first}}</label></td>
-                        <td>{{user.dob.date | date}}</td>
-                        <td>{{user.dob.age}}</td>
-                        <td>{{user.gender}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.location.country}}</td>
-                        <td>{{user.phone}}</td>
-                        <td class="text-center"><i class="icon fa-solid fa-ellipsis-vertical" title="More" aria-hidden="true"></i></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="column panel__column">
+    <!-- Botón para abrir el formulario de creación -->
+    <button type="button" class="cst-button btn cst-button-primary" (click)="openCrearUsuarioForm()" title="Crear nuevo">
+      <i class="fa-solid fa-plus"></i> Crear Usuario
+    </button>
 
-<app-modal [title]="'Test'">
-    <P>Test</P>
-</app-modal>
+    <!-- Formulario de creación de usuario -->
+    <div *ngIf="showCrearUsuarioForm" class="row">
+      <div class="col">
+        <h3>Nuevo Usuario</h3>
+        <form (ngSubmit)="crearUsuario()">
+          <div class="form-group">
+            <label for="first_name">Nombres</label>
+            <input type="text" class="form-control" id="first_name" required [(ngModel)]="nuevoUsuario.first_name" name="first_name">
+          </div>
+          <div class="form-group">
+            <label for="last_name">Apellidos</label>
+            <input type="text" class="form-control" id="last_name" required [(ngModel)]="nuevoUsuario.last_name" name="last_name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required [(ngModel)]="nuevoUsuario.email" name="email">
+          </div>
+          <div class="form-group">
+            <label for="trabajo">Trabajo</label>
+            <input type="checkbox" class="form-control" id="trabajo" [(ngModel)]="nuevoUsuario.trabajo" name="trabajo">
+          </div>
+          <div class="form-group">
+            <label for="nacimiento">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="nacimiento" required [(ngModel)]="nuevoUsuario.nacimiento" name="nacimiento">
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelarCrearUsuario()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tabla para mostrar usuarios -->
+    <div class="row">
+      <div class="col table-responsive">
+        <table class="w-100 table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Email</th>
+              <th>Trabajo</th>
+              <th>Fecha de Nacimiento</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.id }}</td>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.trabajo }}</td>
+              <td>{{ user.nacimiento }}</td>
+              <td class="text-center">
+                <button type="button" class="btn btn-primary" (click)="editarUsuario(user)">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteUser(+user.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

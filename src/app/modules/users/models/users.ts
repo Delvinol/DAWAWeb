@@ -61,7 +61,35 @@ export interface Picture {
 }
 
 export interface User {
-  gender: string;
+  id: number;
+  nombres: string;
+  edad: number;
+  apellidos: string;
+  celular: string;
+  apodo: string;
+  dni: string;
+  email: string;
+  tipoUsuarioId:number;
+  direccion: string;
+  password: string;
+}
+
+export class NewUser {
+  apellidos: string = '';
+  nombres: string = '';
+  tipoUsuarioId: number = 1;
+  apodo: string = '';
+  direccion: string = '';
+  edad: number = 0;
+  celular: string = '';
+  dni: string = '';
+  email: string = '';
+  password: string = '';
+}
+
+
+
+/*gender: string;
   name: Name;
   location: Location;
   email: string;
@@ -72,8 +100,7 @@ export interface User {
   cell: string;
   id: Id;
   picture: Picture;
-  nat: string;
-}
+  nat: string;*/
 
 export interface Info {
   seed: string;

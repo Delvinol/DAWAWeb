@@ -1,0 +1,45 @@
+<div class="panel">
+    <div class="column panel__column">
+        <div class="row panel__row">
+            <div class="col d-flex position-relative justify-content-start align-items-center container_input_icon">
+                <input type="text" class="cst-button btn btn-light text-center" placeholder="Search">
+                <i class="fa-solid fa-magnifying-glass position-absolute"></i>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <button type="button" class="cst-button btn cst-button-primary" title="Create new" (click)="openmodal()">
+                    <i class="fa-solid fa-plus"></i> Create new
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col table-responsive">
+                <table class="w-100 table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Created</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Unit</th>
+                        <th>Category</th>
+                        <th>Supermarket</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="name"><label for="name">Leche</label></td>
+                        <td>07/22/1997</td>
+                        <td>{{ 2.99 | currencyFormat }}</td>
+                        <td>5</td>
+                        <td>Litros</td>
+                        <td>Alimentos</td>
+                        <td>Aldi</td>
+                        <td class="text-center"><i class="icon fa-solid fa-ellipsis-vertical" title="More" aria-hidden="true"></i></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal [title]="'Test'">
+    <P>Test</P>
+</app-modal>

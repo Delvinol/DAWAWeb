@@ -6,10 +6,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
+  open() {
+    throw new Error('Method not implemented.');
+  }
 
   @Input() title: string = 'Modal';
   showModal: boolean = false;
-  @Output() close = new EventEmitter<void>();
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
+
+  
 
   constructor() { }
 
@@ -17,9 +22,8 @@ export class ModalComponent {
     this.showModal = true;
   }
 
-  closeModal() {
-    this.showModal = false;
-    this.close.emit();
+  close() {
+    this.closeModal.emit();
   }
 
 }
